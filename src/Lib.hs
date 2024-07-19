@@ -1,5 +1,5 @@
 module Lib
-    ( twoSum, f
+    ( twoSum, id
     ) where
 
 twoSum :: [Int] -> Int -> (Int, Int)
@@ -8,5 +8,5 @@ twoSum nums target =
                   (y, j) <- zip nums [0..],
                   i < j, x + y == target]
 
-f :: Int -> Int
-f _ = 9
+id :: Int -> Int
+id a = a

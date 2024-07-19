@@ -1,13 +1,13 @@
 ## leetcodeEX
 
-#### HOW TO USE
+### HOW TO USE
 
   stack build
   stack exec leetcodeEX-exe
-### or alternatively
+#### or alternatively
   stack build > /dev/null 2>&1 && stack exec leetcodeEX-exe
 
-#### GIT SETUP
+### GIT SETUP
   git init
   git commit -m "...."
   git remote add origin https://github.com/riquelmeone/haskellEX
