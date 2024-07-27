@@ -13,3 +13,8 @@
   git remote add origin https://github.com/riquelmeone/haskellEX
   git config --global credential.helper store
   git push -u origin master
+
+### DOCUMENTATION
+
+#### runs an Application on the given port:
+  run :: Port -> Application -> IO ()
