@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test GET and POST Requests</title>
+    <title>Haskell Tests</title>
     <style>
         .response {
             margin-top: 20px;
@@ -14,14 +14,20 @@
     </style>
 </head>
 <body>
-    <h1>Test GET and POST Requests</h1>
+    <h1>Haskell Test Site</h1>
     
     <!-- Form for GET request -->
     <h2>GET Request</h2>
-    <form id="get-form" action="http://localhost:3000/text" method="GET">
-        <button type="submit">Send GET Request</button>
+    <form id="get-text" action="http://localhost:3000/text" method="GET">
+        <button type="submit">Send GET Request to /text</button>
     </form>
     <div id="get-response" class="response"></div>
+
+    <h2>CALCULATION</h2>
+    <form id="get-result" action="http://localhost:3000/result" method="GET">
+        <button type="submit">Send GET Request to /result</button>
+    </form>
+    <div id="get-result-response" class="response"></div>
     
     <!-- Form for POST request -->
     <h2>POST Request</h2>
@@ -40,11 +46,19 @@
     <div id="fetch-post-response" class="response"></div>
 
     <script>
-        document.getElementById('get-form').onsubmit = function(event) {
+        document.getElementById('get-text').onsubmit = function(event) {
             event.preventDefault();
             fetch(this.action)
                 .then(response => response.text())
                 .then(data => document.getElementById('get-response').innerText = data)
+                .catch(error => console.error('Error:', error));
+        };
+
+        document.getElementById('get-result').onsubmit = function(event) {
+            event.preventDefault();
+            fetch(this.action)
+                .then(response => response.text())
+                .then(data => document.getElementById('get-result-response').innerText = data)
                 .catch(error => console.error('Error:', error));
         };
 
