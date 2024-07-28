@@ -10,12 +10,14 @@ twoSum nums target =
                   (y, j) <- zip nums [0..],
                   i < j,
                   x + y == target]
+                  
 
 f :: Int -> (Int, Int)
-f x = twoSum [2, 7, 11, 15] x
+f = twoSum [2, 7, 11, 15]
 
 toText :: (Int, Int) -> TL.Text
 toText = TL.pack . show
 
-myId :: Int -> Int
-myId a = a
+myId :: Num a => a -> a 
+myId x = x
+  
