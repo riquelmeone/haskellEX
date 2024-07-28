@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test GET and POST Requests</title>
+    <style>
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test GET and POST Requests</h1>
+    
+    <!-- Form for GET request -->
+    <h2>GET Request</h2>
+    <form id="get-form" action="http://localhost:3000/text" method="GET">
+        <button type="submit">Send GET Request</button>
+    </form>
+    <div id="get-response" class="response"></div>
+    
+    <!-- Form for POST request -->
+    <h2>POST Request</h2>
+    <form id="post-form" action="http://localhost:3000/echo" method="POST">
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" value="Hello, World!">
+        <button type="submit">Send POST Request</button>
+    </form>
+    <div id="post-response" class="response"></div>
+
+    <!-- JavaScript to handle fetch requests -->
+    <h2>Fetch API Requests</h2>
+    <button onclick="sendGetRequest()">Send GET Request with Fetch</button>
+    <button onclick="sendPostRequest()">Send POST Request with Fetch</button>
+    <div id="fetch-get-response" class="response"></div>
+    <div id="fetch-post-response" class="response"></div>
+
+    <script>
+        document.getElementById('get-form').onsubmit = function(event) {
+            event.preventDefault();
+            fetch(this.action)
+                .then(response => response.text())
+                .then(data => document.getElementById('get-response').innerText = data)
+                .catch(error => console.error('Error:', error));
+        };
+
+        document.getElementById('post-form').onsubmit = function(event) {
+            event.preventDefault();
+            const formData = new URLSearchParams(new FormData(this)).toString();
+            fetch(this.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => document.getElementById('post-response').innerText = data)
+            .catch(error => console.error('Error:', error));
+        };
+
+        function sendGetRequest() {
+            fetch('http://localhost:3000/text')
+                .then(response => response.text())
+                .then(data => document.getElementById('fetch-get-response').innerText = data)
+                .catch(error => console.error('Error:', error));
+        }
+
+        function sendPostRequest() {
+            fetch('http://localhost:3000/echo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'message=Hello, World!',
+            })
+            .then(response => response.text())
+            .then(data => document.getElementById('fetch-post-response').innerText = data)
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
+
