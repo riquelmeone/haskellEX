@@ -25,6 +25,7 @@ dependencies:
   - text
   - bytestring
   - http-types
+  - wai-cors
 
 ghc-options:
   - -Wall
