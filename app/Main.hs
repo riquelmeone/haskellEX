@@ -3,21 +3,18 @@ module Main (main) where
 
 import Lib
 
-import Network.Wai
-import Network.Wai.Handler.Warp
-import Network.HTTP.Types (status200, methodPost, methodPut, methodDelete)
-import qualified Data.ByteString.Lazy as L
-import qualified Data.ByteString.Lazy.Char8 as LC8
+import Web.Scotty
+import qualified Data.ByteString.Lazy as BL
+import qualified Data.Text.Lazy as TL
+import qualified Data.Text.Lazy.Encoding as TE
+
+f :: 
 
 main :: IO ()
-main = run 8080 app
-
-app :: Application
-app request respond = do
-    let method = requestMethod request
-    if method `elem` [methodPost, methodPut, methodDelete]
-        then do
-            body <- strictRequestBody request
-            respond $ responseLBS status200 [("Content-Type", "text/plain")] body
-        else
-            respond $ responseLBS status200 [("Content-Type", "text/plain")] "Only POST, PUT, DELETE methods are supported"
+main = scotty 3000 $ do
+    get "/text" $ do
+        html "<h1>Lorem ipsum</h1>"
+    post "/echo" $ do
+        body <- body
+        let bodyText = TE.decodeUtf8 (BL.toStrict body)
+        text bodyText

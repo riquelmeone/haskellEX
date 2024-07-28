@@ -14,7 +14,16 @@
   git config --global credential.helper store
   git push -u origin master
 
-### DOCUMENTATION
+## DOCUMENTATION
 
-#### runs an Application on the given port:
+#### extra tools
+    stack install hoogle hlint ormolu stylish-haskell
+    stack hoogle -- generate
+
+#### Locate the stack-installed hoogle
+    stack exec which hoogle
+
+### runs an Application on the given port:
   run :: Port -> Application -> IO ()
+#### this uses:
+  type Application = Request -> (Response -> IO ResponseReceived) -> IO ResponseReceived

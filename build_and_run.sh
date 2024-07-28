@@ -1,2 +1,2 @@
 #!/bin/bash
-stack build && stack exec leetcodeEX-exe
+stack clean && stack build && stack exec leetcodeEX-exe
