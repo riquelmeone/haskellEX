@@ -1,25 +1,22 @@
 cabal-version:      2.4
-name:               webserver-example
-version:            0.1.0.0
+name:           leetcodeEX
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/leetcodeEX#readme>
+homepage:       https://github.com/githubuser/leetcodeEX#readme
+bug-reports:    https://github.com/githubuser/leetcodeEX/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2024 Author name here
+license:        BSD-3-Clause
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
 
--- A short (one-line) description of the package.
--- synopsis:
-
--- A longer description of the package.
--- description:
-
--- A URL where users can report bugs.
--- bug-reports:
-
--- The license under which the package is released.
--- license:
-author:             Ricardo
-maintainer:         ricardo.galan@gmx.net
-
--- A copyright notice.
--- copyright:
--- category:
-extra-source-files: CHANGELOG.md
+source-repository head
+  type: git
+  location: https://github.com/githubuser/leetcodeEX
 
 library
     exposed-modules:  Lib
