@@ -17,11 +17,11 @@
 ## DOCUMENTATION
 
 #### extra tools
-    stack install hoogle hlint ormolu stylish-haskell
-    stack hoogle -- generate
+  stack install hoogle hlint ormolu stylish-haskell
+  stack hoogle -- generate
 
 #### Locate the stack-installed hoogle
-    stack exec which hoogle
+  stack exec which hoogle
 
 ### runs an Application on the given port:
   run :: Port -> Application -> IO ()
