@@ -1,11 +1,11 @@
 ## leetcodeEX
 
-### HOW TO USE
+### HOW TO RUN
 
-  stack build
-  stack exec leetcodeEX-exe
-#### or alternatively
-  stack build > /dev/null 2>&1 && stack exec leetcodeEX-exe
+#### LINUX/Bash
+  sh execute.sh
+#### WINDOWS/PS
+  .\execute.ps1
 
 ### GIT SETUP
   git init
