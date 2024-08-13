@@ -15,17 +15,20 @@ main :: IO ()
 main = scotty 3000 $ do
     middleware simpleCors   -- CORS support
 
+    -- http://localhost:3000/text
     get "/text" $ do
         content <- liftIO $ readFile "frontend/example.html"
         html $ TL.pack content
         
+    -- http://localhost:3000/fibo/100
     get "/fibo/:n" $ do
-        n <- pathParam "n"  -- http://localhost:3000/fibo/100
+        n <- pathParam "n"
         let result = take n fibList
         html $ toText result
 
+    -- http://localhost:3000/twosum?nums=1,2,3,4,7,11,15&target=18
     get "/twosum" $ do
-        numsStr <- queryParam "nums" -- http://localhost:3000/twosum?nums=1,2,3,4,7,11,15&target=18
+        numsStr <- queryParam "nums" 
         targetStr <- queryParam "target"
         let nums = parseNums numsStr
         let target = readMaybe targetStr :: Maybe Int
@@ -35,7 +38,9 @@ main = scotty 3000 $ do
                 html $ toText result
             _ -> text "Invalid input parameters"
 
+    --  Invoke-WebRequest -Uri http://localhost:3000/echo -Method POST -Body "Hello, world!"
+    -- file:///C:/Development/Haskell/haskellEX/frontend/index.html
     post "/echo" $ do
         b <- body
-        html $ TL.concat ["<h1>POST echo: ", TE.decodeUtf8 b, "</h1>"]
+        html $ TL.concat ["POST echo: ", TE.decodeUtf8 b]
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haskell Tests</title>
+    <title>Haskell POST Test</title>
     <style>
         .response {
             margin-top: 20px;
@@ -14,21 +14,8 @@
     </style>
 </head>
 <body>
-    <h1>Haskell Test Site</h1>
-    
-    <!-- Form for GET request -->
-    <h2>GET Request</h2>
-    <form id="get-text" action="http://localhost:3000/text" method="GET">
-        <button type="submit">Send GET Request to /text</button>
-    </form>
-    <div id="get-response" class="response"></div>
+    <h1>Haskell POST Test</h1>
 
-    <h2>CALCULATION</h2>
-    <form id="get-result" action="http://localhost:3000/result" method="GET">
-        <button type="submit">Send GET Request to /result</button>
-    </form>
-    <div id="get-result-response" class="response"></div>
-    
     <!-- Form for POST request -->
     <h2>POST Request</h2>
     <form id="post-form" action="http://localhost:3000/echo" method="POST">
@@ -38,30 +25,7 @@
     </form>
     <div id="post-response" class="response"></div>
 
-    <!-- JavaScript to handle fetch requests -->
-    <h2>Fetch API Requests</h2>
-    <button onclick="sendGetRequest()">Send GET Request with Fetch</button>
-    <button onclick="sendPostRequest()">Send POST Request with Fetch</button>
-    <div id="fetch-get-response" class="response"></div>
-    <div id="fetch-post-response" class="response"></div>
-
     <script>
-        document.getElementById('get-text').onsubmit = function(event) {
-            event.preventDefault();
-            fetch(this.action)
-                .then(response => response.text())
-                .then(data => document.getElementById('get-response').innerText = data)
-                .catch(error => console.error('Error:', error));
-        };
-
-        document.getElementById('get-result').onsubmit = function(event) {
-            event.preventDefault();
-            fetch(this.action)
-                .then(response => response.text())
-                .then(data => document.getElementById('get-result-response').innerText = data)
-                .catch(error => console.error('Error:', error));
-        };
-
         document.getElementById('post-form').onsubmit = function(event) {
             event.preventDefault();
             const formData = new URLSearchParams(new FormData(this)).toString();
@@ -76,26 +40,6 @@
             .then(data => document.getElementById('post-response').innerText = data)
             .catch(error => console.error('Error:', error));
         };
-
-        function sendGetRequest() {
-            fetch('http://localhost:3000/text')
-                .then(response => response.text())
-                .then(data => document.getElementById('fetch-get-response').innerText = data)
-                .catch(error => console.error('Error:', error));
-        }
-
-        function sendPostRequest() {
-            fetch('http://localhost:3000/echo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'message=Hello, World!',
-            })
-            .then(response => response.text())
-            .then(data => document.getElementById('fetch-post-response').innerText = data)
-            .catch(error => console.error('Error:', error));
-        }
     </script>
 </body>
 </html>
