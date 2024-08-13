@@ -5,6 +5,10 @@ module Lib
 import qualified Data.Text.Lazy as TL
 import Text.Read (readMaybe)
 
+
+myId :: Num a => a -> a 
+myId x = x
+
 twoSum :: [Int] -> Int -> (Int, Int)
 twoSum nums target =
   head [(i, j) |  (x, i) <- zip nums [0..],
@@ -17,9 +21,6 @@ f = twoSum [1, 2, 3, 4, 7, 11, 15, 16, 17, 18]
 
 toText :: Show a => a -> TL.Text
 toText = TL.pack . show
-
-myId :: Num a => a -> a 
-myId x = x
 
 fibList :: [Int]
 fibList = 0 : 1 : zipWith (+) fibList (tail fibList)
