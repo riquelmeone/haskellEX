@@ -19,7 +19,7 @@ source-repository head
   location: https://github.com/githubuser/leetcodeEX
 
 library
-    exposed-modules:  Lib
+    exposed-modules:  Lib, Shapes
     build-depends:    base ^>=4.17.2.1,
                       text
     hs-source-dirs:   src

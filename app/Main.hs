@@ -2,6 +2,8 @@
 module Main (main) where
 
 import Lib
+import Shapes
+
 
 import Web.Scotty
 import Network.Wai.Middleware.Cors (simpleCors)
@@ -24,6 +26,14 @@ main = scotty 3000 $ do
     get "/fibo/:n" $ do
         n <- pathParam "n"
         let result = take n fibList
+        html $ toText result
+        
+     -- http://localhost:3000/circle/4.5
+    get "/circle/:f" $ do
+        fText <- pathParam "f"  -- Extracting the parameter as Text
+        let f = read (TL.unpack fText) :: Float  -- Convert Text to Float
+        let shape = Circle f
+        let result = describeShape shape
         html $ toText result
 
     -- http://localhost:3000/twosum?nums=1,2,3,4,7,11,15&target=18

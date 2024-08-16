@@ -25,11 +25,5 @@ toText = TL.pack . show
 fibList :: [Int]
 fibList = 0 : 1 : zipWith (+) fibList (tail fibList)
 
-
-
-
-
-
--- Convert a comma-separated string to a list of Ints
 parseNums :: String -> Maybe [Int]
 parseNums s = mapM (readMaybe . TL.unpack) (TL.splitOn (TL.pack ",") (TL.pack s))
