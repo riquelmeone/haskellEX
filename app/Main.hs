@@ -38,7 +38,7 @@ main = scotty 3000 $ do
     -- http://localhost:3000/circle/4.5
     get "/square/:s" $ do
         sText <- pathParam "s"
-        let s = read (TL.unpack fText) :: Float
+        let s = read (TL.unpack sText) :: Float
         let shape = Square s
         let result = describeShape shape
         html $ toText result
@@ -52,7 +52,6 @@ main = scotty 3000 $ do
         let shape = Rectangle f d
         let result = describeShape shape
         html $ toText result
-
 
     -- http://localhost:3000/twosum?nums=1,2,3,4,7,11,15&target=18
     get "/twosum" $ do
